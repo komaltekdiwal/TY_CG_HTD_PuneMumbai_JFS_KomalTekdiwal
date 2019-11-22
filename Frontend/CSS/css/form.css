@@ -1,0 +1,40 @@
+form{
+    border:1px solid black;
+    border-radius: 25px;
+    width:300px;
+    height:200px;
+    margin-left: 200px;
+    margin-top: 200px;
+    margin-right: 200px;
+    margin-bottom: 200px;
+    text-align:center;
+    background-image:url("/image/PresentAstonishingHoatzin-size_restricted.gif");
+    font-size:20px;
+    color:white;
+    box-shadow:10px 10px 50px red;
+    font-family: cursive;
+}
+input[type="text"],input[type="password"]{
+    width: 200px;
+    height: 20px;
+    border:1px solid red;
+    border-radius:50px;
+    margin:10px;
+    outline:none;
+    text-align:center;
+
+}
+input[type="submit"]{
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 25px;
+    outline:hidden;
+}
+input[type=submit]:hover{
+    background-color:blue;
+    cursor: pointer;
+}
+body{
+    background-image: url("/image/fly-agaric-4542621__340.jpg");
+    background-size: cover;
+}

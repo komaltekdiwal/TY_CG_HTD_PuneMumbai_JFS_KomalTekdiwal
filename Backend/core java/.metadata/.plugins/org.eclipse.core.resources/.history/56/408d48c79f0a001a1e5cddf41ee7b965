@@ -1,0 +1,9 @@
+package com.capgemini.datastructure.algorithm;
+
+import java.util.List;
+
+public class CustomArrayList {
+public CustomArrayList() {
+	List<Object>
+}
+}

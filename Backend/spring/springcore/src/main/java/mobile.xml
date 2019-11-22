@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- <bean id="mobile" class="com.capgemini.springcore.beans.Mobile" autowire="byName">
+    <property name="brandName" value="POCO" />
+     <property name="displaySize" value="5" />
+     <property name="resolution" value="5" />
+     
+    </bean>
+    
+    
+    <bean id="mobileDisplay" class="com.capgemini.springcore.beans.MobileDisplay">
+    <property name="displaySize" value="6" />
+    <property name="resolution" value="4" />
+    
+    </bean> -->
+    
+     <bean id="mobile" class="com.capgemini.springcore.beans.Mobile" scope="prototype">
+    <property name="brandName" value="POCO" />
+     <property name="displaySize" value="5" />
+     <property name="resolution" value="5" />
+     <property name="mobileDisplay" ref="display" />   
+    </bean>
+    
+    
+    <bean id="display" class="com.capgemini.springcore.beans.MobileDisplay">
+    <property name="displaySize" value="6" />
+    <property name="resolution" value="4" />
+    
+    </bean>
+</beans>

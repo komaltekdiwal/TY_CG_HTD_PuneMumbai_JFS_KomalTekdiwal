@@ -1,0 +1,17 @@
+package com.capgemini.selenium1.stepDefinition;
+
+public class LoginStepDefinitin {
+	static {
+		System.setProperty("webdriver.chrome.driver", "/Testing/seleniumtesting/src/main/resources/chromedriver.exe");
+	}
+	
+	WebDriver driver;
+	
+	@Given("^the user has loaded the application in the browser$")
+	public void the_user_has_loaded_the_application_in_the_browser() throws Throwable {
+		driver = new ChromeDriver();
+		driver.get("http://demo.actiTime.com/");
+	}
+
+	@When("^the user enters the…
+}

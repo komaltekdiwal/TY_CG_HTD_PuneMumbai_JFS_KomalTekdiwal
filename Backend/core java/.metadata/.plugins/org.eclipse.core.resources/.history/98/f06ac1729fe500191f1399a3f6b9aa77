@@ -1,0 +1,9 @@
+package com.capgemini.objectclass.methods;
+
+public class Testemployee
+{
+	public static void main(String[] args) 
+	{
+		Employee e = new Employee(1,"Komal",76543.8,'a');
+	}
+}

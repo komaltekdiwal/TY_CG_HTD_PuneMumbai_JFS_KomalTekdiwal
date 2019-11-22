@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="sports"
+		class="com.capgemini.springcore.annotations.beans.Sports">
+		<property name="name" value="cricket" />
+		<property name="totalPlayers" value="2" />
+		<property name="teamInfo">
+			<map>
+				<entry key="India" value="Kohli"></entry>
+				<entry key="Pakistan" value="Sarfaraaz"></entry>
+				<entry key="WestIndies" value="Kamli"></entry>
+
+			</map>
+		</property>
+	</bean>
+</beans>

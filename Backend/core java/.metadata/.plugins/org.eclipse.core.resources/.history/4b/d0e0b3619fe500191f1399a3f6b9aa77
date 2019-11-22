@@ -1,0 +1,9 @@
+package com.capgemini.objectclass.methods;
+
+public class Testemployee
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}

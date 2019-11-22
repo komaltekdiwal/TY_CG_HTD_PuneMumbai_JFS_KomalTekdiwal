@@ -1,0 +1,150 @@
+package com.capgemini.HotelProject.dto;
+
+
+import java.io.FileReader;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import com.capgemini.HotelProject.bean.HotelBean;
+
+public class HotelDAOImpli implements HotelDAO {
+	FileReader reader = null;
+	Properties prop = null;
+	HotelBean hotelBean = null;
+
+	public HotelDAOImpli() {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			reader = new FileReader("jdbc.properties");
+			prop = new Properties();
+			prop.load(reader);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<HotelBean> showMenu() {
+		try (java.sql.Connection conn = DriverManager.getConnection(prop.getProperty("dburl"), prop.getProperty("user"),
+				prop.getProperty("password"));
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(prop.getProperty("query"))) {
+			List<HotelBean> list = new ArrayList<HotelBean>();
+			while (rs.next()) {
+				hotelBean = new HotelBean();
+				hotelBean.setItem_code(rs.getInt(1));
+				hotelBean.setFood_name(rs.getString(2));
+				hotelBean.setPrice(rs.getDouble(3));
+				list.add(hotelBean);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean addFood(HotelBean hotelBean) {
+		try (java.sql.Connection conn = DriverManager.getConnection(prop.getProperty("dburl"), prop.getProperty("user"),
+				prop.getProperty("password"));
+				PreparedStatement pstmt = conn.prepareStatement(prop.getProperty("query2"))) {
+			pstmt.setInt(1, hotelBean.getItem_code());
+			pstmt.setString(2, hotelBean.getFood_name());
+			pstmt.setDouble(3, hotelBean.getPrice());
+			int count = pstmt.executeUpdate();
+			if (count > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	@Override
+	public boolean updateFood(int Itemid,double price)
+	{
+		try (java.sql.Connection conn = DriverManager.getConnection(prop.getProperty("dburl"), prop.getProperty("user"),
+				prop.getProperty("password")); PreparedStatement pstmt = conn.prepareStatement(prop.getProperty("query3"))) {
+			pstmt.setDouble(1,price);
+			pstmt.setInt(2,Itemid);
+
+			int count = pstmt.executeUpdate();
+			if(count >0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean remove(int Itemid) {
+		try (java.sql.Connection conn = DriverManager.getConnection(prop.getProperty("dburl"), prop.getProperty("user"),
+				prop.getProperty("password")); PreparedStatement pstmt = conn.prepareStatement(prop.getProperty("query4")))
+		{
+			pstmt.setInt(1,Itemid);
+			int count = pstmt.executeUpdate();
+			if(count >0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public HotelBean getInfo(int itemid)
+	{
+		try (java.sql.Connection conn = DriverManager.getConnection(prop.getProperty("dburl"), prop.getProperty("user"),
+				prop.getProperty("password"));
+				PreparedStatement pstmt = conn.prepareStatement(prop.getProperty("query5")))
+		{
+			pstmt.setInt(1,itemid);
+			try(ResultSet rs = pstmt.executeQuery())
+			{
+				if(rs.next())
+				{
+					hotelBean = new HotelBean();
+					hotelBean.setItem_code(rs.getInt(1));
+					hotelBean.setFood_name(rs.getString(2));
+					hotelBean.setPrice(rs.getDouble(3));
+					return hotelBean;
+				}
+			}
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	
+		return null;
+	}
+
+}
+

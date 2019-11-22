@@ -1,0 +1,5 @@
+package com.capgemini.selenium1.stepDefinition;
+
+public class LoginStepDefinitin {
+
+}
